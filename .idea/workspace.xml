@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/OS_PROJECT_FINAL.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resource_manager.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sub_systems/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sub_systems/core.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sub_systems/sub_system_1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sub_systems/weighted_round_robin.py" afterDir="false" />
+    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="#write sub system 1 task class">
+      <change beforePath="$PROJECT_DIR$/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/task.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,8 +80,25 @@
       <option name="presentableId" value="Default" />
       <updated>1737103439359</updated>
       <workItem from="1737103441881" duration="6044000" />
-      <workItem from="1737109962477" duration="2833000" />
+      <workItem from="1737109962477" duration="5864000" />
     </task>
+    <task id="LOCAL-00001" summary="#init commit">
+      <option name="closed" value="true" />
+      <created>1737119800351</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737119800351</updated>
+    </task>
+    <task id="LOCAL-00002" summary="#write sub system 1 task class">
+      <option name="closed" value="true" />
+      <created>1737120694625</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737120694625</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -108,5 +114,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#init commit" />
+    <MESSAGE value="#write sub system 1 task class" />
+    <option name="LAST_COMMIT_MESSAGE" value="#write sub system 1 task class" />
   </component>
 </project>
