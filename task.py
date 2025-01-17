@@ -8,9 +8,9 @@ class States:
 
 
 class BaseTask(ABC):
-    def __init__(self, task_id, execution_time, r1_need, r2_need, arrival_time):
+    def __init__(self, name, execution_time, r1_need, r2_need, arrival_time):
         self.state = States.ready
-        self.task_id = task_id
+        self.name = name
         self.r1_need = r1_need
         self.r2_need = r2_need
         self.execution_time = execution_time
@@ -22,9 +22,14 @@ class BaseTask(ABC):
 
 
 class SubSystem1Task(BaseTask):
-    def __init__(self, task_id, execution_time, r1_need, r2_need, arrival_time, core_number):
+    def __init__(self, name, execution_time, r1_need, r2_need, arrival_time, core_number):
         self.core_number = core_number
-        super().__init__(task_id, execution_time, r1_need, r2_need, arrival_time)
+        self.remaining_time = execution_time
+        super().__init__(name, execution_time, r1_need, r2_need, arrival_time)
 
     def execute(self):
-        pass
+        if self.state == States.running:
+            if self.remaining_time > 0:
+                self.remaining_time -= 1
+            return self.remaining_time
+        return -1
