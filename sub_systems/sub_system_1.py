@@ -32,6 +32,11 @@ class SubSystem1(Thread):
         self._lock = threading.Lock()
         self.clock_event = threading.Event()
 
+    def stop(self):
+        with self._lock:
+            self.running = False
+            self.clock_event.set()
+
     def start_cores(self):
         for core in self.cores:
             core.start()
@@ -42,7 +47,8 @@ class SubSystem1(Thread):
             core.join()
 
     def set_clock_event(self):
-        self.clock_event.set()
+        with self._lock:
+            self.clock_event.set()
 
     def run(self):
         self.start_cores()
