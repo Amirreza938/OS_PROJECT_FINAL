@@ -1,17 +1,23 @@
+import threading
 from queue import Queue
 from threading import Thread
 
 from resource_manager import ResourceManager
-from sub_systems.core import Core
+from sub_systems.core import SubSystem1Core
+from sub_systems.weighted_round_robin import WeightedRoundRobinScheduler
 
 
 class SubSystem1(Thread):
     def __init__(self, resource_requested, queue_weights):
         super().__init__()
         self.num_cores = 3
+        self.is_clock_time = False
         self.ready_queues = [Queue() for _ in range(self.num_cores)]
         self.waiting_queue = Queue()
-        self.cores = [Core(i, self.ready_queues[i]) for i in range(self.num_cores)]
+        self.cores = [
+            SubSystem1Core(WeightedRoundRobinScheduler(), i + 1, self.ready_queues[i], self.waiting_queue) for i in
+            range(self.num_cores)
+        ]
         self.resource_manager = ResourceManager(resource_requested)
         self.running = True
 
@@ -21,7 +27,10 @@ class SubSystem1(Thread):
         # Add queues and weights to each core's scheduler
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
-                core.add_queue(queue, weight)
+                core.add_queue(weight)
+
+        self._lock = threading.Lock()
+        self.clock_event = threading.Event()
 
     def start_cores(self):
         for core in self.cores:
@@ -29,18 +38,24 @@ class SubSystem1(Thread):
 
     def stop_cores(self):
         for core in self.cores:
-            core.running = False
+            core.stop()
             core.join()
 
-    def add_task(self, task, core_id=None):
-
-
+    def set_clock_event(self):
+        self.clock_event.set()
 
     def run(self):
-        """
-        Main loop to start cores and manage the waiting queue.
-        """
         self.start_cores()
-        while self.running:
-            self.redistribute_waiting_tasks()
+        while True:
+            self.clock_event.wait()
+            with self._lock:
+                if not self.running:
+                    break
+                for core in self.cores:
+                    core.set_clock_event()
+                self.clock_event.clear()
+        self.stop_cores()
+
+
+
         self.stop_cores()

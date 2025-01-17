@@ -1,3 +1,4 @@
+import threading
 from abc import ABC, abstractmethod
 from sched import scheduler
 from threading import Thread
@@ -26,8 +27,8 @@ class BaseCore(Thread):
 
 class SubSystem1Core(BaseCore):
     def __init__(self, queue_scheduler: WeightedRoundRobinScheduler, core_id, ready_queue, waiting_queue):
-        self.is_clock_time = False
-
+        self.clock_event = threading.Event()
+        self._lock = threading.Lock()
         super().__init__(queue_scheduler, core_id, ready_queue, waiting_queue)
 
     def run_task(self, task: BaseTask):
@@ -41,9 +42,21 @@ class SubSystem1Core(BaseCore):
         self.queue_scheduler.add_queue(self.ready_queue, weight)
 
     def run(self):
-        while self.running:
-            while not self.is_clock_time: pass
-            task :SubSystem1Task= self.queue_scheduler.get_next_task()
-            if task:
-                self.run_task(task)
-            self.is_clock_time = False
+        while True:
+            self.clock_event.wait()
+            with self._lock:
+                if not self.running:
+                    break
+                task = self.queue_scheduler.get_next_task()
+                if task:
+                    self.run_task(task)
+                self.clock_event.clear()
+
+    def set_clock_event(self):
+        with self._lock:
+            self.clock_event.set()
+
+    def stop(self):
+        with self._lock:
+            self.running = False
+            self.clock_event.set()

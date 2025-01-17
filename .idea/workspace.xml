@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="#write BaseCore">
+    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="#add method of add_queue to sub system 1 core">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sub_systems/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sub_systems/sub_system_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/sub_system_1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,18 +29,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "MhkaPR"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MhkaPR&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Amirreza938/OS_PROJECT_FINAL.git",
-    "accountId": "fa4671e4-bedc-40dc-a51e-2422fd8d80b5"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Amirreza938/OS_PROJECT_FINAL.git&quot;,
+    &quot;accountId&quot;: &quot;fa4671e4-bedc-40dc-a51e-2422fd8d80b5&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -51,19 +52,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature-sub-system-1",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature-sub-system-1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -82,6 +83,7 @@
       <updated>1737103439359</updated>
       <workItem from="1737103441881" duration="6044000" />
       <workItem from="1737109962477" duration="8726000" />
+      <workItem from="1737128288175" duration="4987000" />
     </task>
     <task id="LOCAL-00001" summary="#init commit">
       <option name="closed" value="true" />
@@ -107,7 +109,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737122082646</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="#write SubSystem1Core">
+      <option name="closed" value="true" />
+      <created>1737130426992</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737130426992</updated>
+    </task>
+    <task id="LOCAL-00005" summary="#add method of add_queue to sub system 1 core">
+      <option name="closed" value="true" />
+      <created>1737130937250</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1737130937250</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +146,8 @@
     <MESSAGE value="#init commit" />
     <MESSAGE value="#write sub system 1 task class" />
     <MESSAGE value="#write BaseCore" />
-    <option name="LAST_COMMIT_MESSAGE" value="#write BaseCore" />
+    <MESSAGE value="#write SubSystem1Core" />
+    <MESSAGE value="#add method of add_queue to sub system 1 core" />
+    <option name="LAST_COMMIT_MESSAGE" value="#add method of add_queue to sub system 1 core" />
   </component>
 </project>
