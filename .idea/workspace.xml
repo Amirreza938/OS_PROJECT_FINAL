@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="#write sub system 1 task class">
-      <change beforePath="$PROJECT_DIR$/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/task.py" afterDir="false" />
+    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="#write BaseCore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sub_systems/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/core.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737103439359</updated>
       <workItem from="1737103441881" duration="6044000" />
-      <workItem from="1737109962477" duration="5864000" />
+      <workItem from="1737109962477" duration="8726000" />
     </task>
     <task id="LOCAL-00001" summary="#init commit">
       <option name="closed" value="true" />
@@ -98,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737120694625</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#write BaseCore">
+      <option name="closed" value="true" />
+      <created>1737122082646</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737122082646</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +127,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="#init commit" />
     <MESSAGE value="#write sub system 1 task class" />
-    <option name="LAST_COMMIT_MESSAGE" value="#write sub system 1 task class" />
+    <MESSAGE value="#write BaseCore" />
+    <option name="LAST_COMMIT_MESSAGE" value="#write BaseCore" />
   </component>
 </project>
