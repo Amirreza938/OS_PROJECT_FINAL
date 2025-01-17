@@ -37,6 +37,8 @@ class SubSystem1Core(BaseCore):
         elif task_status == -1:
             print(f"running task {task.name} failed because that task state is {task.state}")
 
+    def add_queue(self , weight):
+        self.queue_scheduler.add_queue(self.ready_queue, weight)
 
     def run(self):
         while self.running:
