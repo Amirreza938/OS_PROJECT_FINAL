@@ -8,29 +8,32 @@ from sub_systems.weighted_round_robin import WeightedRoundRobinScheduler
 
 
 class SubSystem1(Thread):
-    def __init__(self, resource_requested, queue_weights):
+    def __init__(self, resource_requested, queue_weights, r1_assigned, r2_assigned):
         super().__init__()
         self.num_cores = 3
         self.is_clock_time = False
         self.ready_queues = [Queue() for _ in range(self.num_cores)]
         self.waiting_queue = Queue()
+        self.r1_assigned = r1_assigned
+        self.r2_assigned = r2_assigned
         self.cores = [
-            SubSystem1Core(WeightedRoundRobinScheduler(), i + 1, self.ready_queues[i], self.waiting_queue) for i in
-            range(self.num_cores)
+            SubSystem1Core(WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned), i + 1,
+                           self.ready_queues[i], self.waiting_queue) for i in range(self.num_cores)
         ]
         self.resource_manager = ResourceManager(resource_requested)
         self.running = True
 
-        # Assign weights to queues (example weights)
         self.queue_weights: list = queue_weights
-
-        # Add queues and weights to each core's scheduler
-        for core in self.cores:
-            for queue, weight in zip(self.ready_queues, self.queue_weights):
-                core.add_queue(weight)
 
         self._lock = threading.Lock()
         self.clock_event = threading.Event()
+
+        self.add_queues_to_schedulers()
+
+    def add_queues_to_schedulers(self):
+        for core in self.cores:
+            for queue, weight in zip(self.ready_queues, self.queue_weights):
+                core.add_queue(weight)
 
     def stop(self):
         with self._lock:
@@ -61,7 +64,5 @@ class SubSystem1(Thread):
                     core.set_clock_event()
                 self.clock_event.clear()
         self.stop_cores()
-
-
 
         self.stop_cores()
