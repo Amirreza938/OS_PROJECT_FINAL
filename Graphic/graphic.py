@@ -1,0 +1,51 @@
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from collections import deque
+import time
+time_steps = deque(maxlen=100)
+core1_tasks = deque(maxlen=100)
+core2_tasks = deque(maxlen=100)
+core3_tasks = deque(maxlen=100)
+r1_usage = deque(maxlen=100)
+r2_usage = deque(maxlen=100)
+
+fig, (ax1,ax2) = plt.subplots(2,1,figsize=(10,8))
+fig.suptitle("Real Time System Monitoring")
+ax1.set_title("Core Utilization")
+ax1.set_xlabel("Time")
+ax1.set_ylabel("task")
+ax1.set_ylim(0,4)
+core1_line, = ax1.plot([],[],label="Core 1")
+core2_line, = ax1.plot([],[],label="Core 2")
+core3_line, = ax1.plot([],[],label="Core 3")
+ax1.legend()
+
+ax2.set_title("Resource Utilization")
+ax2.set_xlabel("Time")
+ax2.set_ylabel("Resource Count")
+ax2.set_ylim(0,12)
+r1_line, = ax2.plot([],[],label="R1")
+r2_line, = ax2.plot([],[],label="R2")
+ax2.legend()
+
+def update_graph(frame):
+    current_time = time.time()
+    time_steps.append(current_time)
+    core1_tasks.append("T11" if frame % 2 == 0 else "idle")
+    core2_tasks.append("T12" if frame % 3 == 0 else "idle")
+    core3_tasks.append("T13" if frame % 4 == 0 else "idle")
+    r1_usage.append(frame % 5)
+    r2_usage.append(frame % 7)
+    core1_line.set_data(time_steps, [1] * len(time_steps) if core1_tasks[-1] != "idle" else [0] * len(time_steps))
+    core2_line.set_data(time_steps, [2] * len(time_steps) if core2_tasks[-1] != "idle" else [0] * len(time_steps))
+    core3_line.set_data(time_steps, [3] * len(time_steps) if core3_tasks[-1] != "idle" else [0] * len(time_steps))
+    r1_line.set_data(time_steps, r1_usage)
+    r2_line.set_data(time_steps, r2_usage)
+    ax1.relim()
+    ax1.autoscale_view()
+    ax2.relim()
+    ax2.autoscale_view()
+    return core1_line, core2_line, core3_line, r1_line, r2_line
+ani = animation.FuncAnimation(fig, update_graph, interval=1000)
+plt.tight_layout()  
+plt.show()

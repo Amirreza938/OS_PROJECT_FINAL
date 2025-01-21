@@ -4,29 +4,32 @@ from threading import Thread
 
 from resource_manager import ResourceManager
 from sub_systems.core import SubSystem1Core
-from sub_systems.weighted_round_robin import WeightedRoundRobinScheduler
+from sub_systems.sub_system_1.weighted_round_robin import WeightedRoundRobinScheduler
 
 
 class SubSystem1(Thread):
     def __init__(self, resource_requested, queue_weights, r1_assigned, r2_assigned):
         super().__init__()
+        self._lock = threading.Lock()
+        self.clock_event = threading.Event()
+
         self.num_cores = 3
-        self.is_clock_time = False
+
         self.ready_queues = [Queue() for _ in range(self.num_cores)]
         self.waiting_queue = Queue()
+
         self.r1_assigned = r1_assigned
         self.r2_assigned = r2_assigned
+
         self.cores = [
-            SubSystem1Core(WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned), i + 1,
-                           self.ready_queues[i], self.waiting_queue) for i in range(self.num_cores)
+            SubSystem1Core(
+                WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned, lock=self._lock),
+                i + 1, self.ready_queues[i], self.waiting_queue) for i in range(self.num_cores)
         ]
         self.resource_manager = ResourceManager(resource_requested)
         self.running = True
 
         self.queue_weights: list = queue_weights
-
-        self._lock = threading.Lock()
-        self.clock_event = threading.Event()
 
         self.add_queues_to_schedulers()
 
@@ -63,6 +66,4 @@ class SubSystem1(Thread):
                 for core in self.cores:
                     core.set_clock_event()
                 self.clock_event.clear()
-        self.stop_cores()
-
         self.stop_cores()
