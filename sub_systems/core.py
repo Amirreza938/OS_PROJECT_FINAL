@@ -1,10 +1,9 @@
 import threading
-from abc import ABC, abstractmethod
-from sched import scheduler
+from abc import abstractmethod
 from threading import Thread
 
-from sub_systems.weighted_round_robin import WeightedRoundRobinScheduler
-from task import BaseTask, SubSystem1Task
+from sub_systems.sub_system_1.weighted_round_robin import WeightedRoundRobinScheduler
+from task import BaseTask
 
 
 class BaseCore(Thread):

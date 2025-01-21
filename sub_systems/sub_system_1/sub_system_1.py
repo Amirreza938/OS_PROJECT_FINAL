@@ -4,7 +4,7 @@ from threading import Thread
 
 from resource_manager import ResourceManager
 from sub_systems.core import SubSystem1Core
-from sub_systems.weighted_round_robin import WeightedRoundRobinScheduler
+from sub_systems.sub_system_1.weighted_round_robin import WeightedRoundRobinScheduler
 
 
 class SubSystem1(Thread):
