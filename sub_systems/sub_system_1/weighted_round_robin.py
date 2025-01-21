@@ -31,16 +31,29 @@ class WeightedRoundRobinScheduler:
             if not self.queues:
                 return None
 
+            # First, check if any tasks in the waiting queue can be moved to the ready queues
+            self._check_waiting_queue()
+
             while True:
                 self._set_current_index()
+                queue = self.queues[self.current_index]
+
                 # Check if the current queue has tasks and its weight allows processing
-                if self.weights[self.current_index] >= self.current_weight:
-                    queue = self.queues[self.current_index]
-                    if not queue.empty():
-                        task: SubSystem1Task = queue.get()
-                        if self.add_to_waiting_queue(task):
-                            continue
-                        return task
+                if self.weights[self.current_index] >= self.current_weight and not queue.empty():
+                    task: SubSystem1Task = queue.get()
+
+                    # If the task cannot be processed due to resource constraints, add it to the waiting queue
+                    if self.add_to_waiting_queue(task):
+                        continue
+
+                    # If the task can be processed, return it
+                    return task
+
+                # If no task is found after a full cycle, break to avoid infinite loop
+                if self.current_index == 0 and self.current_weight <= 0:
+                    break
+
+            return None
 
 
     def _check_waiting_queue(self):

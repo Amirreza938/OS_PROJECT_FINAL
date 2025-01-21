@@ -8,7 +8,7 @@ from sub_systems.sub_system_1.weighted_round_robin import WeightedRoundRobinSche
 
 
 class SubSystem1(Thread):
-    def __init__(self, resource_requested, queue_weights, r1_assigned, r2_assigned):
+    def __init__(self, resource_requested, queue_weights, r1_assigned, r2_assigned, finish_flag):
         super().__init__()
         self._lock = threading.Lock()
         self.clock_event = threading.Event()
@@ -30,6 +30,8 @@ class SubSystem1(Thread):
         self.running = True
 
         self.queue_weights: list = queue_weights
+
+        self.finish_flag = finish_flag
 
         self.add_queues_to_schedulers()
 
@@ -56,6 +58,12 @@ class SubSystem1(Thread):
         with self._lock:
             self.clock_event.set()
 
+    def check_finish_time(self):
+        empty_flag = True
+        for queue in self.ready_queues:
+            empty_flag &= queue.empty()
+        return self.waiting_queue.empty() and empty_flag
+
     def run(self):
         self.start_cores()
         while True:
@@ -64,6 +72,11 @@ class SubSystem1(Thread):
                 if not self.running:
                     break
                 for core in self.cores:
-                    core.set_clock_event()
+                    core.toggle_clock()
+
+                if self.check_finish_time():
+                    break
+
                 self.clock_event.clear()
         self.stop_cores()
+        self.finish_flag = True

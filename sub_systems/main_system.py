@@ -1,6 +1,5 @@
 from threading import Thread, Lock, Event
 
-
 class MainSystem(Thread):
     def __init__(self, sub_systems: list):
         super().__init__()
