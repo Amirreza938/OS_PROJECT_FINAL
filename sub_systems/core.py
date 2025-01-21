@@ -51,7 +51,7 @@ class SubSystem1Core(BaseCore):
                     self.run_task(task)
                 self.clock_event.clear()
 
-    def set_clock_event(self):
+    def toggle_clock(self):
         with self._lock:
             self.clock_event.set()
 

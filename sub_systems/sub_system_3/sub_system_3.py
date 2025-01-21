@@ -33,7 +33,7 @@ class SubSystem3Core(BaseCore):
                     self.run_task(task)
                 self.clock_event.clear()
 
-    def set_clock_event(self):
+    def toggle_clock(self):
         with self._lock:
             self.clock_event.set()
 
@@ -61,7 +61,7 @@ class SubSystem3(Thread):
         self.core.stop()
         self.core.join()
 
-    def set_clock_event(self):
+    def toggle_clock(self):
         with self._lock:
             self.clock_event.set()
 
@@ -72,6 +72,6 @@ class SubSystem3(Thread):
             with self._lock:
                 if not self.running:
                     break
-                self.core.set_clock_event()
+                self.core.toggle_clock()
                 self.clock_event.clear()
         self.stop_core()

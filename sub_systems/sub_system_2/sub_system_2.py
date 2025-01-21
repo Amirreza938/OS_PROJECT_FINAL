@@ -2,7 +2,7 @@ import threading
 from threading import Thread
 import queue
 from queue import Queue
-from core import BaseCore
+from sub_systems.core import BaseCore
 from shortest_remaining_job_first import ShortestRemainingJobFirstScheduler
 from task import BaseTask
 
@@ -30,7 +30,7 @@ class SubSystem2Core(BaseCore):
                 if task:
                     self.run_task(task)
                 self.clock_event.clear()
-    def set_clock_event(self):  
+    def toggle_clock(self):
         with self.lock:
             self.clock_event.set()
     def stop(self): 
@@ -55,7 +55,7 @@ class SubSystem2(Thread):
         for core in self.cores:
             core.stop()
             core.join()
-    def set_clock_event(self):  
+    def toggle_clock(self):
         with self.lock:
             self.clock_event.set()
     def run(self):
@@ -66,6 +66,6 @@ class SubSystem2(Thread):
                 if not self.running:
                     break
                 for core in self.cores:
-                    core.set_clock_event()
+                    core.toggle_clock()
                 self.clock_event.clear()
         self.stop_cores()
