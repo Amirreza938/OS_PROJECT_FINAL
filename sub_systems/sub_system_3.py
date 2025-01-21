@@ -1,11 +1,9 @@
 import threading
 from queue import Queue
 from threading import Thread
-
 from core import BaseCore  
 from rate_monotonic import RateMonotonicScheduler
 from task import BaseTask  
-
 class SubSystem3Core(BaseCore):
     def __init__(self, scheduler: RateMonotonicScheduler, core_id):
         super().__init__(scheduler, core_id, Queue(), None)  

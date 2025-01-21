@@ -8,11 +8,12 @@ class ShortestRemainingJobFirstScheduler:
         self.queue = PriorityQueue()
         self.lock = threading.Lock()
     def add_task(self, task):
-        with self._lock:
+        with self.lock:
             self.ready_queue.put((task.remaining_time, task))
     def get_next_task(self):
         with self._lock:
             if not self.ready_queue.empty():
+                
                 _, task = self.ready_queue.get()
                 if task.r1_need <= self.r1_available and task.r2_need <= self.r2_available:
                     self.r1_available -= task.r1_need
