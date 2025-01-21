@@ -48,11 +48,10 @@ class SubSystem1Core(BaseCore):
                     break
                 task = self.queue_scheduler.get_next_task()
                 if task:
-                    self.run_task(task) 
-                self.clock_event.clear()
+                    self.run_task(task)
+            self.clock_event.clear()
 
     def toggle_clock(self):
-        with self._lock:
             self.clock_event.set()
 
     def stop(self):

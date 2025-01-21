@@ -40,7 +40,9 @@ class MainSystem(Thread):
     def run(self):
         self.run_sub_systems()
         while True:
+            print('clock wait')
             self.clock_event.wait()
+            print('clock free')
             with self._lock:
                 if not self.running:
                     break
@@ -48,4 +50,4 @@ class MainSystem(Thread):
                 if self.check_finish_time():
                     self.join_subsystems()
                     break
-                self.clock_event.clear()
+            self.clock_event.clear()
