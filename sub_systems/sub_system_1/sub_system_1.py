@@ -1,5 +1,5 @@
 import threading
-from queue import Queue
+from collections import deque
 from threading import Thread
 
 from resource_manager import ResourceManager
@@ -15,8 +15,8 @@ class SubSystem1(Thread):
 
         self.num_cores = 3
         self.tasks = tasks
-        self.ready_queues = [Queue() for _ in range(self.num_cores)]
-        self.waiting_queue = Queue()
+        self.ready_queues = [deque() for _ in range(self.num_cores)]
+        self.waiting_queue = deque()
 
         self.r1_assigned = r1_assigned
         self.r2_assigned = r2_assigned
@@ -69,8 +69,8 @@ class SubSystem1(Thread):
         print("lock finish times" , self._lock.locked())
         empty_flag = True
         for queue in self.ready_queues:
-            empty_flag &= queue.empty()
-        return self.waiting_queue.empty() and empty_flag
+            empty_flag &= len(queue) == 0
+        return len(self.waiting_queue) == 0 and empty_flag
 
     def run(self):
         self.start_cores()

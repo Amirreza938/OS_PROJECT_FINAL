@@ -1,16 +1,13 @@
-import threading
-from queue import Queue
-
-from task import SubSystem1Task
+from collections import deque
 
 
 class WeightedRoundRobinScheduler:
-    def __init__(self, waiting_queue , r1_available, r2_available,):
-        self.queues: list[Queue] = []
-        self.weights: list[int] = []
+    def __init__(self, waiting_queue, r1_available, r2_available):
+        self.queues = []
+        self.weights = []
         self.current_index = 0
         self.current_weight = 0
-        self.waiting_queue: Queue = waiting_queue
+        self.waiting_queue = waiting_queue
         self.r1_available = r1_available
         self.r2_available = r2_available
 
@@ -18,7 +15,7 @@ class WeightedRoundRobinScheduler:
         self.queues.append(queue)
         self.weights.append(weight)
 
-    def change_resource_availablity(self,r1_available , r2_available):
+    def change_resource_availablity(self, r1_available, r2_available):
         self.r1_available = r1_available
         self.r2_available = r2_available
 
@@ -26,66 +23,56 @@ class WeightedRoundRobinScheduler:
         if not self.queues:
             return None
 
-        # First, check if any tasks in the waiting queue can be moved to the ready queues
         self._check_waiting_queue()
 
         while True:
             self._set_current_index()
             queue = self.queues[self.current_index]
 
-            # Check if the current queue has tasks and its weight allows processing
-            if self.weights[self.current_index] >= self.current_weight and not queue.empty():
-                task: SubSystem1Task = queue.get()
+            if self.weights[self.current_index] >= self.current_weight and queue:
+                task = queue.popleft()
 
-                # If the task cannot be processed due to resource constraints, add it to the waiting queue
                 if self.add_to_waiting_queue(task):
                     continue
 
-                # If the task can be processed, return it
                 return task
 
-            # If no task is found after a full cycle, break to avoid infinite loop
             if self.current_index == 0 and self.current_weight <= 0:
                 break
 
         return None
 
-
     def _check_waiting_queue(self):
-        still_waiting = []
+        still_waiting = deque()
 
-        while not self.waiting_queue.empty():
-            task: SubSystem1Task = self.waiting_queue.get()
+        while self.waiting_queue:
+            task = self.waiting_queue.popleft()
             if task.r1_need <= self.r1_available and task.r2_need <= self.r2_available:
                 self.add_to_ready_queue(task)
             else:
                 still_waiting.append(task)
 
-        # Put back tasks that are still waiting
         for task in still_waiting:
-            self.waiting_queue.put(task)
+            self.waiting_queue.append(task)
 
-    def add_to_ready_queue(self, task: SubSystem1Task):
-        min_queue_len = self.queues[0].qsize()
+    def add_to_ready_queue(self, task):
+        min_queue_len = len(self.queues[0])
         min_sized_queue = self.queues[0]
         for queue in self.queues:
-            if queue.qsize() < min_queue_len:
+            if len(queue) < min_queue_len:
                 min_sized_queue = queue
-                min_queue_len = queue.qsize()
-        min_sized_queue.put(task)
-
-
+                min_queue_len = len(queue)
+        min_sized_queue.append(task)
 
     def _set_current_index(self):
         self.current_index = (self.current_index + 1) % len(self.queues)
         if self.current_index == 0:
             self.current_weight -= 1
             if self.current_weight <= 0:
-                # Reset the weight to the maximum weight in the system
                 self.current_weight = max(self.weights)
 
-    def add_to_waiting_queue(self, task: SubSystem1Task):
+    def add_to_waiting_queue(self, task):
         if task.r1_need > self.r1_available or task.r2_need > self.r2_available:
-            self.waiting_queue.put(task)
+            self.waiting_queue.append(task)
             return True
         return False

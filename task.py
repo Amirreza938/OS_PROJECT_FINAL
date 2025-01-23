@@ -16,6 +16,7 @@ class States:
     ready = "ready"
     running = "running"
     waiting = "waiting"
+    finished = "finished"
 
 
 class BaseTask(ABC):
