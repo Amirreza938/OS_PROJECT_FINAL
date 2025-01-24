@@ -20,9 +20,10 @@ def main():
     }
     queue_weights = [1, 2, 3]
 
-    task: SubSystem1Task = SubSystem1Task("T1", 10, 1, 1, 3, 0)
+    task1: SubSystem1Task = SubSystem1Task("T1", 10, 1, 1, 0, 0)
+    task2: SubSystem1Task = SubSystem1Task("T2", 5, 1, 1, 0, 1)
     resource_1_finish_flag = False
-    sub_system_1 = SubSystem1(total_resources, queue_weights, 4, 4, [task], resource_1_finish_flag)
+    sub_system_1 = SubSystem1(total_resources, queue_weights, 4, 4, [task1, task2], resource_1_finish_flag)
     main_system = MainSystem([sub_system_1])
     main_system.start()
 

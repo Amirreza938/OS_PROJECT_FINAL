@@ -23,7 +23,7 @@ class SubSystem1(Thread):
         self.cores = [
             SubSystem1Core(
                 WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned),
-                i + 1, self.ready_queues[i], self.waiting_queue) for i in range(self.num_cores)
+                i , self.ready_queues[i], self.waiting_queue) for i in range(self.num_cores)
         ]
         self.resource_manager = ResourceManager(resource_requested)
         self.running = True
@@ -36,12 +36,12 @@ class SubSystem1(Thread):
 
     def assign_tasks_to_queues(self):
         """Assign tasks to the appropriate queues based on resource availability."""
-        scheduler = WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned)
         for core in self.cores:
-            for queue, weight in zip(self.ready_queues, self.queue_weights):
-                scheduler.add_queue(queue, weight)
-        for task in self.tasks:
-            scheduler.add_to_ready_queue(task)
+            for task in self.tasks:
+                if task.core_number == core.core_id:
+                    core.ready_queue.append(task)
+
+
 
     def add_queues_to_schedulers(self):
         """Add queues to the schedulers of each core."""
