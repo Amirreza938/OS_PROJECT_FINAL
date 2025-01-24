@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="some changes for main system and all">
+    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="some errors fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub_systems/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub_systems/sub_system_1/sub_system_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/sub_system_1/sub_system_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub_systems/sub_system_1/weighted_round_robin.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/sub_system_1/weighted_round_robin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/task.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,23 +50,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.core.executor": "Debug",
-    "Python.main.executor": "Run",
-    "Python.sub_system_1.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "/home/mhkapr/Documents/RL project/RL_Snake_Project/Snake-Game-RL",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.core.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sub_system_1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mhkapr/Documents/RL project/RL_Snake_Project/Snake-Game-RL&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/sub_systems/sub_system_3" />
@@ -127,6 +123,7 @@
       <workItem from="1737453834776" duration="3615000" />
       <workItem from="1737540530306" duration="3533000" />
       <workItem from="1737565561678" duration="119000" />
+      <workItem from="1737699464707" duration="988000" />
     </task>
     <task id="LOCAL-00001" summary="#init commit">
       <option name="closed" value="true" />
@@ -240,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737471053205</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="some errors fixed">
+      <option name="closed" value="true" />
+      <created>1737690205102</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1737690205102</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -271,22 +276,12 @@
     <MESSAGE value="write main system" />
     <MESSAGE value="some changes for main system" />
     <MESSAGE value="some changes for main system and all" />
-    <option name="LAST_COMMIT_MESSAGE" value="some changes for main system and all" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="some errors fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="some errors fixed" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$core.coverage" NAME="core Coverage Results" MODIFIED="1737469229557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sub_systems" />
     <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$sub_system_1.coverage" NAME="sub_system_1 Coverage Results" MODIFIED="1737468154146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sub_systems/sub_system_1" />
-    <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$main.coverage" NAME="main Coverage Results" MODIFIED="1737689577514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$main.coverage" NAME="main Coverage Results" MODIFIED="1737690193005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

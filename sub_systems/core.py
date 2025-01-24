@@ -48,6 +48,7 @@ class SubSystem1Core(Thread):
         """Core execution loop: process tasks on each clock tick."""
         while self.running:
             self.clock_event.wait()  # Wait for the clock tick
+
             with self._lock:
                 if not self.running:
                     break
@@ -60,7 +61,8 @@ class SubSystem1Core(Thread):
                 else:
                     print(f"Core {self.core_id} has no tasks to process")
 
-            self.clock_event.clear()  # Reset the clock event for the next tick
+            self.clock_event.clear()
+            self.queue_scheduler.increment_time()# Reset the clock event for the next tick
 
     def toggle_clock(self):
         """Trigger the clock event to process the next task."""
