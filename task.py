@@ -92,3 +92,28 @@ class SubSystem2Task(BaseTask):
     def set_state(self, new_state):
         logger.info(f"Task '{self.name}' state changed from {self.state} to {new_state}")
         self.state = new_state
+class SubSystem3Task(BaseTask):
+    def __init__(self, name, execution_time, r1_need, r2_need, arrival_time, period):
+        super().__init__(name, execution_time, r1_need, r2_need, arrival_time)
+        self.period = period  # Period for Rate Monotonic Scheduling
+        self.remaining_time = execution_time
+        self.state = States.running
+        logger.info(f"Task '{self.name}' created with state={self.state}, execution_time={self.execution_time}, "
+                    f"r1_need={self.r1_need}, r2_need={self.r2_need}, arrival_time={self.arrival_time}, period={self.period}")
+
+    def execute(self):
+        if self.state == States.running:
+            if self.remaining_time > 0:
+                self.remaining_time -= 1
+                logger.info(f"Task '{self.name}' executed. Remaining time: {self.remaining_time}")
+                return self.remaining_time
+            else:
+                logger.info(f"Task '{self.name}' completed")
+                return 0
+        else:
+            logger.warning(f"Task '{self.name}' is not in 'running' state. Current state: {self.state}")
+            return -1
+
+    def set_state(self, new_state):
+        logger.info(f"Task '{self.name}' state changed from {self.state} to {new_state}")
+        self.state = new_state
