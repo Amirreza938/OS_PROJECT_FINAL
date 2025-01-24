@@ -26,7 +26,7 @@ def main():
     main_system = MainSystem([sub_system_1])
     main_system.start()
 
-    for _ in range(100):
+    while True:
         main_system.toggle_clock()
         print("hello")
         sleep(1)
