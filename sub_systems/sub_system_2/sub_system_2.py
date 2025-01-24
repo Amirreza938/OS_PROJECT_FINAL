@@ -26,7 +26,9 @@ class SubSystem2Core(BaseCore):
         else:
             # If the task is not completed, re-queue it without deducting resources
             self.scheduler.add_to_ready_queue(task, is_requeue=True)
-
+    def get_current_task(self):
+        """Get the current task being processed by the core."""
+        return self.scheduler.get_next_task()
     def run(self):
         while True:
             self.clock_event.wait()

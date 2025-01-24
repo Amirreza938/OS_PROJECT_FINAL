@@ -13,15 +13,18 @@ class SubSystem3Core(BaseCore):
         self.core_id = core_id
         self._lock = threading.Lock()
         self.clock_event = threading.Event()
+        self.current_task = None  # Track the current task being executed
 
     def run_task(self, task: BaseTask):
         """Execute a task for one clock cycle."""
-        task_status = task.execute()
+        task_status = task.execute()  # Execute the task for one clock cycle
         if task_status == 0:
             print(f"Task {task.name} completed on Core {self.core_id}")
             self.scheduler.release_resources(task)  # Release resources after task completion
+            self.current_task = None  # Clear the current task
         elif task_status == -1:
             print(f"Task {task.name} failed on Core {self.core_id}")
+            self.current_task = None  # Clear the current task
         else:
             # Release resources before re-queueing the task
             self.scheduler.release_resources(task)
@@ -30,6 +33,7 @@ class SubSystem3Core(BaseCore):
                 print(f"Task {task.name} re-queued with remaining time: {task.remaining_time}")
             else:
                 print(f"Task {task.name} cannot be re-queued due to insufficient resources.")
+            self.current_task = task  # Keep the task as current
 
     def run(self):
         """Main execution loop for the core."""
@@ -40,9 +44,14 @@ class SubSystem3Core(BaseCore):
                     break
                 task = self.scheduler.get_next_task()
                 if task:
+                    self.current_task = task  # Set the current task
                     self.run_task(task)
                 self.scheduler.increment_time()  # Increment time after each clock cycle
                 self.clock_event.clear()
+
+    def get_current_task(self):
+        """Get the current task being processed by the core."""
+        return self.current_task
 
     def toggle_clock(self):
         """Trigger the clock event for the core."""
@@ -71,7 +80,19 @@ class SubSystem3(Thread):
         self.resource_manager = ResourceManager(resource_requested)
         # Assign tasks to the scheduler
         self.assign_tasks_to_scheduler()
-
+    def print_state(self):
+        """Print the state of SubSystem3."""
+        print(f"Sub3:")
+        print(f"Resources: R1: {self.r1_assigned} R2: {self.r2_assigned}")
+        print(f"Waiting Queue {list(self.scheduler.ready_queue)}")
+        print(f"Ready Queue: {list(self.scheduler.ready_queue)}")
+        print(f"Core1:")
+        task = self.core.get_current_task()
+        if task:
+            print(f"Running Task: {task.name}")
+        else:
+            print("Running Task: idle")
+        print()
     def assign_tasks_to_scheduler(self):
         """Assign tasks to the Rate Monotonic Scheduler."""
         for task in self.tasks:

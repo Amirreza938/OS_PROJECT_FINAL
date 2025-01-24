@@ -35,7 +35,7 @@ class SubSystem1Core(Thread):
     def get_current_task(self):
         """Get the next task to process from the scheduler."""
         return self.queue_scheduler.get_next_task()
-
+    
     def add_task(self, task):
         """Add a task to the ready queue."""
         self.ready_queue.append(task)
