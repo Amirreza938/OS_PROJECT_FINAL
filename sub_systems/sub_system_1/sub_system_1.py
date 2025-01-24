@@ -1,6 +1,5 @@
-import threading
 from collections import deque
-from threading import Thread
+from threading import Thread, Event, Lock
 
 from resource_manager import ResourceManager
 from sub_systems.core import SubSystem1Core
@@ -10,8 +9,8 @@ from sub_systems.sub_system_1.weighted_round_robin import WeightedRoundRobinSche
 class SubSystem1(Thread):
     def __init__(self, resource_requested, queue_weights, r1_assigned, r2_assigned, tasks, finish_flag):
         super().__init__()
-        self._lock = threading.Lock()
-        self.clock_event = threading.Event()
+        self._lock = Lock()
+        self.clock_event = Event()
 
         self.num_cores = 3
         self.tasks = tasks
@@ -29,13 +28,14 @@ class SubSystem1(Thread):
         self.resource_manager = ResourceManager(resource_requested)
         self.running = True
 
-        self.queue_weights: list = queue_weights
+        self.queue_weights = queue_weights
         self.finish_flag = finish_flag
 
         self.assign_tasks_to_queues()
         self.add_queues_to_schedulers()
 
     def assign_tasks_to_queues(self):
+        """Assign tasks to the appropriate queues based on resource availability."""
         scheduler = WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned)
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
@@ -44,46 +44,51 @@ class SubSystem1(Thread):
             scheduler.add_to_ready_queue(task)
 
     def add_queues_to_schedulers(self):
+        """Add queues to the schedulers of each core."""
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
                 core.add_queue(weight)
 
     def stop(self):
+        """Stop the subsystem and all its cores."""
         with self._lock:
             self.running = False
             self.clock_event.set()
 
     def start_cores(self):
+        """Start all cores."""
         for core in self.cores:
             core.start()
 
     def stop_cores(self):
+        """Stop all cores."""
         for core in self.cores:
             core.stop()
             core.join()
 
     def toggle_clock(self):
-            self.clock_event.set()
+        """Trigger the clock event for all cores."""
+        self.clock_event.set()
 
     def check_finish_time(self):
-        print("lock finish times" , self._lock.locked())
+        """Check if all tasks are completed."""
         empty_flag = True
         for queue in self.ready_queues:
             empty_flag &= len(queue) == 0
         return len(self.waiting_queue) == 0 and empty_flag
 
     def run(self):
+        """Main execution loop for the subsystem."""
         self.start_cores()
         while self.running:
             self.clock_event.wait()  # Wait for the clock event
             print('Clock in SubSystem1 triggered')
 
-            print("lock before cores" , self._lock.locked())
             # Toggle cores' clocks
             with self._lock:
                 for core in self.cores:
                     core.toggle_clock()
-            print("lock after cores" , self._lock.locked())
+
             # Check if all tasks are finished
             if self.check_finish_time():
                 print('All tasks finished in SubSystem1')

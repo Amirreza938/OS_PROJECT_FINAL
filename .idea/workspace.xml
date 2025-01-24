@@ -7,7 +7,6 @@
     <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="some changes for main system and all">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sub_systems/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/core.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sub_systems/main_system.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/main_system.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sub_systems/sub_system_1/sub_system_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/sub_system_1/sub_system_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sub_systems/sub_system_1/weighted_round_robin.py" beforeDir="false" afterPath="$PROJECT_DIR$/sub_systems/sub_system_1/weighted_round_robin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/task.py" afterDir="false" />
@@ -62,7 +61,7 @@
     "Python.sub_system_1.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "feature-main-system",
+    "git-widget-placeholder": "test",
     "last_opened_file_path": "/home/mhkapr/Documents/RL project/RL_Snake_Project/Snake-Game-RL",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -274,9 +273,20 @@
     <MESSAGE value="some changes for main system and all" />
     <option name="LAST_COMMIT_MESSAGE" value="some changes for main system and all" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$core.coverage" NAME="core Coverage Results" MODIFIED="1737469229557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sub_systems" />
     <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$sub_system_1.coverage" NAME="sub_system_1 Coverage Results" MODIFIED="1737468154146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sub_systems/sub_system_1" />
-    <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$main.coverage" NAME="main Coverage Results" MODIFIED="1737540727169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$main.coverage" NAME="main Coverage Results" MODIFIED="1737689577514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
