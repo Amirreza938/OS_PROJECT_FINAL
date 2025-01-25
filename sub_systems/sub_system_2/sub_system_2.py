@@ -38,10 +38,14 @@ class SubSystem2Core(BaseCore):
             with self.lock:
                 if not self.running:
                     break
-                task = self.scheduler.get_next_task()
-                if task:
-                    self.current_task = task  # Set the current task
-                    self.run_task(task)
+
+                # Only fetch a task if the core is idle
+                if self.current_task is None:
+                    task = self.scheduler.get_next_task()
+                    if task:
+                        self.current_task = task  # Set the current task
+                        self.run_task(task)
+
                 # Increment the current time after each clock cycle
                 self.scheduler.increment_time()
                 self.clock_event.clear()
@@ -62,7 +66,7 @@ class SubSystem2Core(BaseCore):
             self.clock_event.set()
 
 class SubSystem2(Thread):
-    def __init__(self, resource_requested, r1_assigned, r2_assigned, tasks, finish_flag):
+    def __init__(self, resource_manager, r1_assigned, r2_assigned, tasks, finish_flag, subsystem_id):
         super().__init__()
         self._lock = threading.Lock()
         self.clock_event = threading.Event()
@@ -80,9 +84,10 @@ class SubSystem2(Thread):
         self.cores = [
             SubSystem2Core(self.scheduler, i + 1) for i in range(self.num_cores)
         ]
-        self.resource_manager = ResourceManager(resource_requested)
+        self.resource_manager = resource_manager
         self.running = True
         self.finish_flag = finish_flag
+        self.subsystem_id = subsystem_id  # Added subsystem_id for resource borrowing
 
         # Assign tasks to the single ready queue
         self.assign_tasks_to_queue()
@@ -115,8 +120,11 @@ class SubSystem2(Thread):
 
     def check_finish_time(self):
         """Check if all tasks are completed."""
-        empty_ready_queue = len(self.scheduler.ready_queue) == 0
-        return empty_ready_queue
+        # Check if all tasks have remaining_time == 0
+        for task in self.tasks:
+            if task.remaining_time > 0:
+                return False  # At least one task is not completed
+        return True  # All tasks are completed
 
     def run(self):
         """Main execution loop for the subsystem."""
@@ -129,13 +137,13 @@ class SubSystem2(Thread):
                 for core in self.cores:
                     core.toggle_clock()
 
-            # Check if all tasks are finished
-            if self.check_finish_time():
-                print('All tasks finished in SubSystem2')
-                break
+                # Check if all tasks are finished
+                if self.check_finish_time():
+                    print('All tasks finished in SubSystem2')
+                    self.finish_flag = True
+                    break
 
             self.clock_event.clear()  # Clear the clock event for the next iteration
 
         self.stop_cores()
-        self.finish_flag = True
         print('SubSystem2 stopped')

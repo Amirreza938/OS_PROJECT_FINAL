@@ -5,10 +5,12 @@ from resource_manager import ResourceManager
 from sub_systems.core import BaseCore
 from .rate_monotonic import RateMonotonicScheduler
 from task import BaseTask
+from collections import deque
 
 class SubSystem3Core(BaseCore):
     def __init__(self, scheduler: RateMonotonicScheduler, core_id):
-        super().__init__(scheduler, core_id, Queue(), None)
+        # Pass the scheduler's ready_queue and an empty waiting_queue to BaseCore
+        super().__init__(scheduler, core_id, scheduler.ready_queue, deque())
         self.scheduler = scheduler
         self.core_id = core_id
         self._lock = threading.Lock()
@@ -65,7 +67,7 @@ class SubSystem3Core(BaseCore):
             self.clock_event.set()
 
 class SubSystem3(Thread):
-    def __init__(self, resource_requested, r1_assigned, r2_assigned, tasks, finish_flag):
+    def __init__(self, resource_manager, r1_assigned, r2_assigned, tasks, finish_flag, subsystem_id):
         super().__init__()
         self.num_cores = 1  # SubSystem3 has only one core
         self.r1_assigned = r1_assigned
@@ -77,9 +79,11 @@ class SubSystem3(Thread):
         self.running = True
         self._lock = threading.Lock()
         self.clock_event = threading.Event()
-        self.resource_manager = ResourceManager(resource_requested)
+        self.resource_manager = resource_manager
+        self.subsystem_id = subsystem_id  # Added subsystem_id for resource borrowing
         # Assign tasks to the scheduler
         self.assign_tasks_to_scheduler()
+
     def print_state(self):
         """Print the state of SubSystem3."""
         print(f"Sub3:")
@@ -93,6 +97,7 @@ class SubSystem3(Thread):
         else:
             print("Running Task: idle")
         print()
+
     def assign_tasks_to_scheduler(self):
         """Assign tasks to the Rate Monotonic Scheduler."""
         for task in self.tasks:

@@ -7,7 +7,7 @@ from sub_systems.sub_system_1.weighted_round_robin import WeightedRoundRobinSche
 
 
 class SubSystem1(Thread):
-    def __init__(self, resource_requested, queue_weights, r1_assigned, r2_assigned, tasks, finish_flag):
+    def __init__(self, total_r1, total_r2, queue_weights, r1_assigned, r2_assigned, tasks, finish_flag, subsystem_id):
         super().__init__()
         self._lock = Lock()
         self.clock_event = Event()
@@ -25,11 +25,13 @@ class SubSystem1(Thread):
                 WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned),
                 i + 1, self.ready_queues[i], self.waiting_queue) for i in range(self.num_cores)
         ]
-        self.resource_manager = ResourceManager(resource_requested)
+        # Initialize ResourceManager with total_r1 and total_r2
+        self.resource_manager = ResourceManager(total_r1, total_r2)
         self.running = True
 
         self.queue_weights = queue_weights
         self.finish_flag = finish_flag
+        self.subsystem_id = subsystem_id  # Added subsystem_id for resource borrowing
 
         self.assign_tasks_to_queues()
         self.add_queues_to_schedulers()
@@ -51,8 +53,6 @@ class SubSystem1(Thread):
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
                 core.add_queue(weight)
-
-
 
     def stop(self):
         """Stop the subsystem and all its cores."""

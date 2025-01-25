@@ -76,17 +76,16 @@ class SubSystem2Task(BaseTask):
         logger.info(f"SubSystem2Task '{self.name}' assigned to core {self.core_number}")
 
     def execute(self):
-        #print("lock before cores" , self._lock.locked())
         if self.state == States.running:
             if self.remaining_time > 0:
                 self.remaining_time -= 1
-                logger.info(f"Task '{self.name}' executed on core {self.core_number}. Remaining time: {self.remaining_time}")
+                print(f"Task '{self.name}' executed on core {self.core_number}. Remaining time: {self.remaining_time}")
                 return self.remaining_time
             else:
-                logger.info(f"Task '{self.name}' completed on core {self.core_number}")
+                print(f"Task '{self.name}' completed on core {self.core_number}")
                 return 0
         else:
-            logger.warning(f"Task '{self.name}' is not in 'running' state. Current state: {self.state}")
+            print(f"Task '{self.name}' is not in 'running' state. Current state: {self.state}")
             return -1
 
     def set_state(self, new_state):

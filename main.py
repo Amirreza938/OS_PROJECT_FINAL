@@ -8,6 +8,7 @@ from task import SubSystem2Task
 from task import SubSystem3Task
 from sub_systems.sub_system_3.sub_system_3 import SubSystem3
 from sub_systems.sub_system_2.sub_system_2 import SubSystem2
+from resource_manager import ResourceManager
 import logging
 import threading
 
@@ -36,6 +37,7 @@ class SimulationApp:
         self.simulation_thread = None
         self.simulation_running = False
         self.simulation_paused = False
+        self.simulation_lock = threading.Lock()  # Lock for thread safety
 
     def print_system_state(self, main_system, current_time):
         self.text_area.insert(tk.END, f"Time: {current_time}\n\n")
@@ -92,48 +94,39 @@ class SimulationApp:
         self.text_area.see(tk.END)
 
     def start_simulation(self):
-        self.simulation_running = True
-        self.simulation_paused = False
-        self.start_button.config(state=tk.DISABLED)
-        self.stop_button.config(state=tk.NORMAL)
-        self.resume_button.config(state=tk.DISABLED)
+        with self.simulation_lock:
+            self.simulation_running = True
+            self.simulation_paused = False
+            self.start_button.config(state=tk.DISABLED)
+            self.stop_button.config(state=tk.NORMAL)
+            self.resume_button.config(state=tk.DISABLED)
         
         self.simulation_thread = threading.Thread(target=self.run_simulation)
         self.simulation_thread.start()
 
     def stop_simulation(self):
-        self.simulation_paused = True
-        self.stop_button.config(state=tk.DISABLED)
-        self.resume_button.config(state=tk.NORMAL)
+        with self.simulation_lock:
+            self.simulation_paused = True
+            self.stop_button.config(state=tk.DISABLED)
+            self.resume_button.config(state=tk.NORMAL)
 
     def resume_simulation(self):
-        self.simulation_paused = False
-        self.stop_button.config(state=tk.NORMAL)
-        self.resume_button.config(state=tk.DISABLED)
+        with self.simulation_lock:
+            self.simulation_paused = False
+            self.stop_button.config(state=tk.NORMAL)
+            self.resume_button.config(state=tk.DISABLED)
 
     def run_simulation(self):
-        total_resources = {
-            'R1': 10,
-            'R2': 10,
-        }
-        sub_system_1_resource_requester = {
-            'R1': 4,
-            'R2': 4
-        }
-        sub_system_2_resource_requester = {
-            'R1': 4,
-            'R2': 4
-        }
-        sub_system_3_resource_requester = {
-            'R1' : 4,
-            'R2' : 4
-        }
-        queue_weights = [1, 1]
+        total_r1 = 10
+        total_r2 = 10
+
+        # Initialize ResourceManager
+        resource_manager = ResourceManager(total_r1, total_r2)
 
         # Tasks for SubSystem1
         task1: SubSystem1Task = SubSystem1Task("T1", 10, 1, 1, 0, 1)
         task2: SubSystem1Task = SubSystem1Task("T2", 10, 1, 1, 1, 2)
-        task3: SubSystem1Task = SubSystem1Task("T3", 10, 1, 1,2, 3)
+        task3: SubSystem1Task = SubSystem1Task("T3", 10, 1, 1, 2, 3)
 
         # Tasks for SubSystem2
         task4: SubSystem2Task = SubSystem2Task("T4", 10, 1, 1, 0, 1)
@@ -147,27 +140,35 @@ class SimulationApp:
         resource_3_finish_flag = False
 
         # Initialize subsystems
-        sub_system_1 = SubSystem1(total_resources, queue_weights, 4, 4, [task1, task2, task3], resource_1_finish_flag)
-        sub_system_2 = SubSystem2(total_resources, 4, 4, [task4, task5], resource_2_finish_flag)
-        sub_system_3 = SubSystem3(total_resources, 4, 4, [task6], resource_3_finish_flag)
+        sub_system_1 = SubSystem1(total_r1, total_r2, [1, 1, 1], 4, 4, [task1, task2, task3], resource_1_finish_flag, 1)
+        sub_system_2 = SubSystem2(resource_manager, 4, 4, [task4, task5], resource_2_finish_flag, 2)
+        sub_system_3 = SubSystem3(resource_manager, 4, 4, [task6], resource_3_finish_flag, 3)
 
         # Create main system with all subsystems
-        main_system = MainSystem([sub_system_1, sub_system_2, sub_system_3])
+        main_system = MainSystem([sub_system_1, sub_system_2, sub_system_3], total_r1, total_r2)
         main_system.start()
         
-        for current_time in range(100):
-            if not self.simulation_running:
-                break
-            while self.simulation_paused:
-                sleep(0.1)
+        current_time = 0
+        while self.simulation_running:
+            with self.simulation_lock:
+                if self.simulation_paused:
+                    sleep(0.1)
+                    continue
+
             main_system.toggle_clock()
             self.print_system_state(main_system, current_time)
+            current_time += 1
             sleep(1)
+
+            # Check if all tasks are completed
+            if all([sub_system.finish_flag for sub_system in main_system.sub_systems]):
+                break
         
-        self.simulation_running = False
-        self.start_button.config(state=tk.NORMAL)
-        self.stop_button.config(state=tk.DISABLED)
-        self.resume_button.config(state=tk.DISABLED)
+        with self.simulation_lock:
+            self.simulation_running = False
+            self.start_button.config(state=tk.NORMAL)
+            self.stop_button.config(state=tk.DISABLED)
+            self.resume_button.config(state=tk.DISABLED)
 
 if __name__ == '__main__':
     root = tk.Tk()
