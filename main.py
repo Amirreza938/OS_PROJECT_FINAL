@@ -29,8 +29,6 @@ def main():
 
     while True:
         main_system.toggle_clock()
-        print("hello")
-        sleep(1)
 
 
 if __name__ == '__main__':
