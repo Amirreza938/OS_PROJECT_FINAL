@@ -8,8 +8,7 @@ class ShortestRemainingJobFirstScheduler:
         self.assigned_tasks = set()  # Track tasks already assigned to cores
 
     def add_to_ready_queue(self, task, is_requeue=False):
-        """Add a task to the ready queue if all required resources are available."""
-        if task.r1_need <= self.r1_assigned and task.r2_need <= self.r2_assigned:
+        if is_requeue or (task.r1_need <= self.r1_assigned and task.r2_need <= self.r2_assigned):
             self.ready_queue.append(task)
             if not is_requeue:
                 # Deduct resources only if this is not a re-queue
@@ -20,7 +19,6 @@ class ShortestRemainingJobFirstScheduler:
             print(f"Task {task.name} cannot be added due to insufficient resources. Resources: R1={self.r1_assigned}, R2={self.r2_assigned}")
 
     def get_next_task(self):
-        """Get the next task to process based on shortest remaining time first scheduling."""
         if not self.ready_queue:
             return None  # No tasks in the queue
 
@@ -36,13 +34,11 @@ class ShortestRemainingJobFirstScheduler:
         return shortest_task
 
     def release_resource(self, task):
-        """Release resources when a task is completed."""
         self.r1_assigned += task.r1_need
         self.r2_assigned += task.r2_need
         self.assigned_tasks.discard(task.name)  # Remove the task from assigned tasks
         print(f"Resources released: R1={self.r1_assigned}, R2={self.r2_assigned}")
 
     def increment_time(self):
-        """Increment the current simulation time."""
         self.current_time += 1
         print(f"Current time: {self.current_time}")

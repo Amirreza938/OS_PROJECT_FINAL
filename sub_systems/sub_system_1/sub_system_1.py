@@ -37,7 +37,6 @@ class SubSystem1(Thread):
         self.add_queues_to_schedulers()
 
     def assign_tasks_to_queues(self):
-        """Assign tasks to the appropriate queues based on resource availability."""
         scheduler = WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned)
         for core in self.cores:
             for task in self.tasks:
@@ -66,18 +65,15 @@ class SubSystem1(Thread):
             core.join()
 
     def toggle_clock(self):
-        """Trigger the clock event for all cores."""
         self.clock_event.set()
 
     def check_finish_time(self):
-        """Check if all tasks are completed."""
         empty_flag = True
         for queue in self.ready_queues:
             empty_flag &= len(queue) == 0
         return len(self.waiting_queue) == 0 and empty_flag
 
     def run(self):
-        """Main execution loop for the subsystem."""
         self.start_cores()
         while self.running:
             self.clock_event.wait()  # Wait for the clock event

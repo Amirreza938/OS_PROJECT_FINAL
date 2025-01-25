@@ -10,7 +10,6 @@ class RateMonotonicScheduler:
         self._lock = threading.Lock()  # Lock for thread safety
 
     def add_task(self, task):
-        """Add a task to the ready queue if resources are available."""
         with self._lock:
             if task.r1_need <= self.r1_assigned and task.r2_need <= self.r2_assigned:
                 self.ready_queue.append(task)
@@ -23,7 +22,6 @@ class RateMonotonicScheduler:
                 return False  # Task not added
 
     def get_next_task(self):
-        """Get the next task to process based on Rate Monotonic Scheduling (shortest period first)."""
         with self._lock:
             if not self.ready_queue:
                 return None  # No tasks in the queue
@@ -40,14 +38,12 @@ class RateMonotonicScheduler:
             return shortest_period_task
 
     def release_resources(self, task):
-        """Release resources when a task is completed or re-queued."""
         with self._lock:
             self.r1_assigned += task.r1_need
             self.r2_assigned += task.r2_need
             print(f"Resources released: R1={self.r1_assigned}, R2={self.r2_assigned}")
 
     def increment_time(self):
-        """Increment the current simulation time."""
         with self._lock:
             self.current_time += 1
             print(f"Current time: {self.current_time}")

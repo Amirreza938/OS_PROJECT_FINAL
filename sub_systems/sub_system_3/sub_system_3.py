@@ -18,7 +18,6 @@ class SubSystem3Core(BaseCore):
         self.current_task = None  # Track the current task being executed
 
     def run_task(self, task: BaseTask):
-        """Execute a task for one clock cycle."""
         task_status = task.execute()  # Execute the task for one clock cycle
         if task_status == 0:
             print(f"Task {task.name} completed on Core {self.core_id}")
@@ -38,7 +37,6 @@ class SubSystem3Core(BaseCore):
             self.current_task = task  # Keep the task as current
 
     def run(self):
-        """Main execution loop for the core."""
         while True:
             self.clock_event.wait()
             with self._lock:
@@ -52,16 +50,13 @@ class SubSystem3Core(BaseCore):
                 self.clock_event.clear()
 
     def get_current_task(self):
-        """Get the current task being processed by the core."""
         return self.current_task
 
     def toggle_clock(self):
-        """Trigger the clock event for the core."""
         with self._lock:
             self.clock_event.set()
 
     def stop(self):
-        """Stop the core."""
         with self._lock:
             self.running = False
             self.clock_event.set()
@@ -85,7 +80,6 @@ class SubSystem3(Thread):
         self.assign_tasks_to_scheduler()
 
     def print_state(self):
-        """Print the state of SubSystem3."""
         print(f"Sub3:")
         print(f"Resources: R1: {self.r1_assigned} R2: {self.r2_assigned}")
         print(f"Waiting Queue {list(self.scheduler.ready_queue)}")
@@ -99,27 +93,22 @@ class SubSystem3(Thread):
         print()
 
     def assign_tasks_to_scheduler(self):
-        """Assign tasks to the Rate Monotonic Scheduler."""
         for task in self.tasks:
             self.scheduler.add_task(task)
             print(f"Task {task.name} added to SubSystem3 with period={task.period}")
 
     def start_core(self):
-        """Start the core."""
         self.core.start()
 
     def stop_core(self):
-        """Stop the core."""
         self.core.stop()
         self.core.join()
 
     def toggle_clock(self):
-        """Trigger the clock event for the core."""
         with self._lock:
             self.clock_event.set()
 
     def check_finish_time(self):
-        """Check if all tasks are completed."""
         # Check if all tasks have remaining_time == 0
         for task in self.tasks:
             if task.remaining_time > 0:
@@ -127,7 +116,6 @@ class SubSystem3(Thread):
         return True  # All tasks are completed
 
     def run(self):
-        """Main execution loop for SubSystem3."""
         self.start_core()
         while self.running:
             self.clock_event.wait()
