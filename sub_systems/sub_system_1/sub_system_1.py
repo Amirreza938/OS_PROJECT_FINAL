@@ -40,33 +40,27 @@ class SubSystem1(Thread):
         """Assign tasks to the appropriate queues based on resource availability."""
         scheduler = WeightedRoundRobinScheduler(self.waiting_queue, self.r1_assigned, self.r2_assigned)
         for core in self.cores:
-            for queue, weight in zip(self.ready_queues, self.queue_weights):
-                scheduler.add_queue(queue, weight)
-        
-        # Distribute tasks evenly across the cores
-        for i, task in enumerate(self.tasks):
-            core_index = i % self.num_cores
-            self.ready_queues[core_index].append(task)
+            for task in self.tasks:
+                if task.core_number == core.core_id:
+                    core.ready_queue.append(task)
+
+
 
     def add_queues_to_schedulers(self):
-        """Add queues to the schedulers of each core."""
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
                 core.add_queue(weight)
 
     def stop(self):
-        """Stop the subsystem and all its cores."""
         with self._lock:
             self.running = False
             self.clock_event.set()
 
     def start_cores(self):
-        """Start all cores."""
         for core in self.cores:
             core.start()
 
     def stop_cores(self):
-        """Stop all cores."""
         for core in self.cores:
             core.stop()
             core.join()
