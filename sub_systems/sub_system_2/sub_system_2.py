@@ -14,40 +14,49 @@ class SubSystem2Core(BaseCore):
         self.scheduler = scheduler
         self.core_id = core_id
         self.clock_event = threading.Event()
+        self.current_task = None  # Track the current task being executed
 
     def run_task(self, task: BaseTask):
-        print(task.name)
+        """Execute a task for one clock cycle."""
         task_status = task.execute()  # Execute the task for one clock cycle
         if task_status == 0:
             print(f"Task {task.name} completed on core {self.core_id}")
-            self.scheduler.release_resource(task)
+            self.scheduler.release_resource(task)  # Release resources after task completion
+            self.current_task = None  # Clear the current task
         elif task_status == -1:
             print(f"Task {task.name} failed on core {self.core_id}")
+            self.current_task = None  # Clear the current task
         else:
             # If the task is not completed, re-queue it without deducting resources
             self.scheduler.add_to_ready_queue(task, is_requeue=True)
-    def get_current_task(self):
-        """Get the current task being processed by the core."""
-        return self.scheduler.get_next_task()
+            self.current_task = task  # Keep the task as current
+
     def run(self):
+        """Main execution loop for the core."""
         while True:
             self.clock_event.wait()
-            
             with self.lock:
                 if not self.running:
                     break
                 task = self.scheduler.get_next_task()
                 if task:
+                    self.current_task = task  # Set the current task
                     self.run_task(task)
                 # Increment the current time after each clock cycle
                 self.scheduler.increment_time()
                 self.clock_event.clear()
 
+    def get_current_task(self):
+        """Get the current task being processed by the core."""
+        return self.current_task
+
     def toggle_clock(self):
+        """Trigger the clock event for the core."""
         with self.lock:
             self.clock_event.set()
 
     def stop(self):
+        """Stop the core."""
         with self.lock:
             self.running = False
             self.clock_event.set()
@@ -107,10 +116,7 @@ class SubSystem2(Thread):
     def check_finish_time(self):
         """Check if all tasks are completed."""
         empty_ready_queue = len(self.scheduler.ready_queue) == 0
-        
-        print(f"Debug - Ready Queue: {len(self.scheduler.ready_queue)}")
-        
-        return empty_ready_queue 
+        return empty_ready_queue
 
     def run(self):
         """Main execution loop for the subsystem."""
