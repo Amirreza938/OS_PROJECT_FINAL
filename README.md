@@ -101,14 +101,14 @@ The project is a **multi-threaded application** designed as follows:
 
 ---
 
-### Shortest Remaining Time First (SRTF)
+### Shortest Remaining Time First 
 
 - **Description**: Prioritizes tasks with the shortest remaining execution time, ensuring shorter tasks are completed quickly.  
 - **Application**: SubSystem2.
 
 ---
 
-### Rate Monotonic Scheduling (RMS)
+### Rate Monotonic Scheduling
 
 - **Description**: Tasks are prioritized by their periods. Shorter-period tasks have higher priority.  
 - **Application**: SubSystem3.
