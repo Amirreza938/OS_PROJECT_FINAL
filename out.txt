@@ -1,0 +1,308 @@
+Time: 0
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 1
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 2
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 3
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 4
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 5
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 6
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 7
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 8
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: t1
+Ready Queue: ['t1']
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: ['t3']
+Ready Queue: ['t3']
+Core1:
+Running Task: t3
+
+hello
+Time: 9
+
+Sub1:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Core1:
+Running Task: idle
+Ready Queue: []
+Core2:
+Running Task: idle
+Ready Queue: []
+Core3:
+Running Task: idle
+Ready Queue: []
+
+Sub2:
+Resources: R1: 4 R2: 4
+Ready Queue: ['t2']
+Core1:
+Running Task: idle
+Core2:
+Running Task: t2
+
+Sub3:
+Resources: R1: 4 R2: 4
+Waiting Queue: []
+Ready Queue: []
+Core1:
+Running Task: idle
