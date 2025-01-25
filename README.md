@@ -14,17 +14,9 @@
    - [Shortest Remaining Time First](#shortest-remaining-time-first)  
    - [Rate Monotonic Scheduling](#rate-monotonic-scheduling)  
 6. [Resource Management](#resource-management)  
-7. [Implementation Steps](#implementation-steps)  
-   - [Setting Up the Environment](#setting-up-the-environment)  
-   - [Running the Project](#running-the-project)  
-   - [Testing the System](#testing-the-system)  
-8. [Project Structure](#project-structure)  
-9. [Sample Input and Output](#sample-input-and-output)  
-10. [Additional Features](#additional-features)  
-11. [Conclusion](#conclusion)  
-12. [License](#license)  
-13. [Contributors](#contributors)  
-14. [Acknowledgments](#acknowledgments)  
+7. [Implementation Steps](#implementation-steps)
+8. [Project Structure](#project-structure)
+
 
 ---
 
@@ -206,4 +198,37 @@ The project was implemented in a structured and iterative manner, ensuring that 
    - Reduced unnecessary logging and improved the efficiency of task execution.
 
 ---
+
+
+## Project Structure
+
+1. **Root Directory**:
+   - `.gitignore`: Git ignore file.
+   - `README.md`: Documentation for the project.
+   - `main.py`: Main entry point of the program.
+   - `resource_manager.py`: Manages resource allocation.
+   - `task.py`: Task management and execution logic.
+   - `requirements.txt`: Lists all dependencies required for the project.
+
+2. **`sub_systems/` Directory**:
+   - `main_system.py`: Orchestrates the interactions between subsystems.
+
+   1. **SubSystem 1 (`sub_system_1/`)**:
+      - `__init__.py`: Marks the directory as a Python package.
+      - `sub_system_1.py`: Core logic for Subsystem 1.
+      - `weighted_round_robin.py`: Implements the Weighted Round Robin scheduling algorithm.
+      - `__pycache/`: Python bytecode cache.
+
+   2. **SubSystem 2 (`sub_system_2/`)**:
+      - `__init__.py`: Marks the directory as a Python package.
+      - `sub_system_2.py`: Core logic for Subsystem 2.
+      - `shortest_remaining_job_first.py`: Implements the Shortest Remaining Job First scheduling algorithm.
+      - `__pycache/`: Python bytecode cache.
+
+   3. **SubSystem 3 (`sub_system_3/`)**:
+      - `__init__.py`: Marks the directory as a Python package.
+      - `sub_system_3.py`: Core logic for Subsystem 3.
+      - `rate_monotonic.py`: Implements the Rate Monotonic scheduling algorithm.
+      - `__pycache/`: Python bytecode cache.
+
 
