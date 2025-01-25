@@ -40,14 +40,19 @@ class SubSystem1(Thread):
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
                 scheduler.add_queue(queue, weight)
-        for task in self.tasks:
-            scheduler.add_to_ready_queue(task)
+        
+        # Distribute tasks evenly across the cores
+        for i, task in enumerate(self.tasks):
+            core_index = i % self.num_cores
+            self.ready_queues[core_index].append(task)
 
     def add_queues_to_schedulers(self):
         """Add queues to the schedulers of each core."""
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
                 core.add_queue(weight)
+
+
 
     def stop(self):
         """Stop the subsystem and all its cores."""

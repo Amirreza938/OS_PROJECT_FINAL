@@ -133,7 +133,7 @@ class SimulationApp:
         # Tasks for SubSystem1
         task1: SubSystem1Task = SubSystem1Task("T1", 10, 1, 1, 0, 1)
         task2: SubSystem1Task = SubSystem1Task("T2", 10, 1, 1, 1, 2)
-        task3: SubSystem1Task = SubSystem1Task("T3", 10, 1, 1, 2, 3)
+        task3: SubSystem1Task = SubSystem1Task("T3", 10, 1, 1,2, 3)
 
         # Tasks for SubSystem2
         task4: SubSystem2Task = SubSystem2Task("T4", 10, 1, 1, 0, 1)
