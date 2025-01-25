@@ -116,10 +116,14 @@ class SimulationApp:
         self.resume_button = tk.Button(self.button_frame, text="Resume", command=self.resume_simulation, state=tk.DISABLED)
         self.resume_button.pack(side=tk.LEFT, padx=5)
         
+        self.view_report_button = tk.Button(self.button_frame, text="View Report", command=self.view_report, state=tk.DISABLED)
+        self.view_report_button.pack(side=tk.LEFT, padx=5)
+        
         self.simulation_thread = None
         self.simulation_running = False
         self.simulation_paused = False
         self.simulation_lock = threading.Lock()  # Lock for thread safety
+        self.finished_task = None  # Track the last finished task
 
     def print_system_state(self, main_system, current_time):
         self.text_area.insert(tk.END, f"Time: {current_time}\n\n")
@@ -174,6 +178,38 @@ class SimulationApp:
         
         self.text_area.insert(tk.END, "hello\n")  # Print "hello" only once per iteration
         self.text_area.see(tk.END)
+
+        # Check if any task has finished
+        for sub_system in main_system.sub_systems:
+            if isinstance(sub_system, SubSystem1):
+                for core in sub_system.cores:
+                    task = core.get_current_task()
+                    if task and task.remaining_time == 0:
+                        self.finished_task = task
+                        self.view_report_button.config(state=tk.NORMAL)
+                        break
+            elif isinstance(sub_system, SubSystem2):
+                for core in sub_system.cores:
+                    task = core.get_current_task()
+                    if task and task.remaining_time == 0:
+                        self.finished_task = task
+                        self.view_report_button.config(state=tk.NORMAL)
+                        break
+            elif isinstance(sub_system, SubSystem3):
+                task = sub_system.core.get_current_task()
+                if task and task.remaining_time == 0:
+                    self.finished_task = task
+                    self.view_report_button.config(state=tk.NORMAL)
+                    break
+
+    def view_report(self):
+        if self.finished_task:
+            report = f"Task {self.finished_task.name} finished on SubSystem{self.finished_task.core_number}\n"
+            report += f"Execution Time: {self.finished_task.execution_time}\n"
+            report += f"Resources Used: R1={self.finished_task.r1_need}, R2={self.finished_task.r2_need}\n"
+            report += f"Arrival Time: {self.finished_task.arrival_time}\n"
+            messagebox.showinfo("Task Report", report)
+            self.view_report_button.config(state=tk.DISABLED)
 
     def start_simulation(self):
         # Open the input dialog to get user inputs
