@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="some errors fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MhkaPR&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Amirreza938/OS_PROJECT_FINAL.git&quot;,
+    &quot;accountId&quot;: &quot;fa4671e4-bedc-40dc-a51e-2422fd8d80b5&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2rkWE6owuHW8DHC2xcJNvP62vGI" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.core.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sub_system_1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mhkapr/Documents/RL project/RL_Snake_Project/Snake-Game-RL&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sub_systems/sub_system_3" />
+      <recent name="$PROJECT_DIR$/sub_systems/sub_system_2" />
+      <recent name="$PROJECT_DIR$/sub_systems/sub_system_1" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="OS_PROJECT_FINAL" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PY-242.23339.19" />
+        <option value="bundled-python-sdk-0029f7779945-399fe30bd8c1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-242.23339.19" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="810d6309-14df-4d22-97fa-0b8e0d53ae86" name="Changes" comment="" />
+      <created>1737103439359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737103439359</updated>
+      <workItem from="1737103441881" duration="6044000" />
+      <workItem from="1737109962477" duration="8726000" />
+      <workItem from="1737128288175" duration="11630000" />
+      <workItem from="1737383345963" duration="12000" />
+      <workItem from="1737453834776" duration="3615000" />
+      <workItem from="1737540530306" duration="3533000" />
+      <workItem from="1737565561678" duration="119000" />
+      <workItem from="1737699464707" duration="988000" />
+    </task>
+    <task id="LOCAL-00001" summary="#init commit">
+      <option name="closed" value="true" />
+      <created>1737119800351</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737119800351</updated>
+    </task>
+    <task id="LOCAL-00002" summary="#write sub system 1 task class">
+      <option name="closed" value="true" />
+      <created>1737120694625</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1737120694625</updated>
+    </task>
+    <task id="LOCAL-00003" summary="#write BaseCore">
+      <option name="closed" value="true" />
+      <created>1737122082646</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737122082646</updated>
+    </task>
+    <task id="LOCAL-00004" summary="#write SubSystem1Core">
+      <option name="closed" value="true" />
+      <created>1737130426992</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1737130426992</updated>
+    </task>
+    <task id="LOCAL-00005" summary="#add method of add_queue to sub system 1 core">
+      <option name="closed" value="true" />
+      <created>1737130937250</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1737130937250</updated>
+    </task>
+    <task id="LOCAL-00006" summary="#refine core and sub system 1">
+      <option name="closed" value="true" />
+      <created>1737134989615</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737134989615</updated>
+    </task>
+    <task id="LOCAL-00007" summary="#refine sub system 1">
+      <option name="closed" value="true" />
+      <created>1737135169172</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737135169172</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add waiting queue to  weighted_round_robin.py">
+      <option name="closed" value="true" />
+      <created>1737172864348</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737172864348</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add git ignore">
+      <option name="closed" value="true" />
+      <created>1737172952204</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737172952204</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactoring and cleaning folders">
+      <option name="closed" value="true" />
+      <created>1737459338304</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737459338304</updated>
+    </task>
+    <task id="LOCAL-00011" summary="write main system">
+      <option name="closed" value="true" />
+      <created>1737460753985</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737460753985</updated>
+    </task>
+    <task id="LOCAL-00012" summary="some changes for main system">
+      <option name="closed" value="true" />
+      <created>1737465005614</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737465005614</updated>
+    </task>
+    <task id="LOCAL-00013" summary="some changes for main system">
+      <option name="closed" value="true" />
+      <created>1737465795527</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737465795527</updated>
+    </task>
+    <task id="LOCAL-00014" summary="some changes for main system and all">
+      <option name="closed" value="true" />
+      <created>1737471053205</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1737471053205</updated>
+    </task>
+    <task id="LOCAL-00015" summary="some errors fixed">
+      <option name="closed" value="true" />
+      <created>1737690205102</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1737690205102</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#init commit" />
+    <MESSAGE value="#write sub system 1 task class" />
+    <MESSAGE value="#write BaseCore" />
+    <MESSAGE value="#write SubSystem1Core" />
+    <MESSAGE value="#add method of add_queue to sub system 1 core" />
+    <MESSAGE value="#refine core and sub system 1" />
+    <MESSAGE value="#refine sub system 1" />
+    <MESSAGE value="add waiting queue to  weighted_round_robin.py" />
+    <MESSAGE value="add git ignore" />
+    <MESSAGE value="refactoring and cleaning folders" />
+    <MESSAGE value="write main system" />
+    <MESSAGE value="some changes for main system" />
+    <MESSAGE value="some changes for main system and all" />
+    <MESSAGE value="some errors fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="some errors fixed" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$core.coverage" NAME="core Coverage Results" MODIFIED="1737469229557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sub_systems" />
+    <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$sub_system_1.coverage" NAME="sub_system_1 Coverage Results" MODIFIED="1737468154146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sub_systems/sub_system_1" />
+    <SUITE FILE_PATH="coverage/OS_PROJECT_FINAL$main.coverage" NAME="main Coverage Results" MODIFIED="1737690193005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>
