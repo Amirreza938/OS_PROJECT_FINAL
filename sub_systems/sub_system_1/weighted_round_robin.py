@@ -49,7 +49,7 @@ class WeightedRoundRobinScheduler:
     def promote_tasks_from_lower_queues(self):
         for i in range(len(self.queues) - 1, 0, -1):
             if self.queues[i]:
-                task = self.queues[i].pop(0)
+                task = self.queues[i].pop()
                 self.queues[0].append(task)
                 break
 
