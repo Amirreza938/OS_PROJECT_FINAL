@@ -7,8 +7,8 @@ class ShortestRemainingJobFirstScheduler:
         self.current_time = 0  # Current simulation time
 
     def add_to_ready_queue(self, task, is_requeue=False):
-        """Add a task to the ready queue if resources are available."""
-        if is_requeue or (task.r1_need <= self.r1_assigned and task.r2_need <= self.r2_assigned):
+        """Add a task to the ready queue if all required resources are available."""
+        if task.r1_need <= self.r1_assigned and task.r2_need <= self.r2_assigned:
             self.ready_queue.append(task)
             if not is_requeue:
                 # Deduct resources only if this is not a re-queue
