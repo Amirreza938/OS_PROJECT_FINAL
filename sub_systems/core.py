@@ -33,19 +33,16 @@ class SubSystem1Core(Thread):
         self.running = True
 
     def get_current_task(self):
-        """Get the next task to process from the scheduler."""
         return self.queue_scheduler.get_next_task()
 
     def add_task(self, task):
-        """Add a task to the ready queue."""
+
         self.ready_queue.append(task)
 
     def add_queue(self, weight):
-        """Add a queue with its weight to the scheduler."""
         self.queue_scheduler.add_queue(self.ready_queue, weight)
 
     def run(self):
-        """Core execution loop: process tasks on each clock tick."""
         while self.running:
             self.clock_event.wait()  # Wait for the clock tick
 
@@ -62,14 +59,12 @@ class SubSystem1Core(Thread):
                     print(f"Core {self.core_id} has no tasks to process")
 
             self.clock_event.clear()
-            self.queue_scheduler.increment_time()# Reset the clock event for the next tick
+            self.queue_scheduler.increment_time()
 
     def toggle_clock(self):
-        """Trigger the clock event to process the next task."""
         self.clock_event.set()
 
     def stop(self):
-        """Stop the core's execution."""
         with self._lock:
             self.running = False
             self.clock_event.set()

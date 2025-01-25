@@ -35,7 +35,6 @@ class SubSystem1(Thread):
         self.add_queues_to_schedulers()
 
     def assign_tasks_to_queues(self):
-        """Assign tasks to the appropriate queues based on resource availability."""
         for core in self.cores:
             for task in self.tasks:
                 if task.core_number == core.core_id:
@@ -44,60 +43,51 @@ class SubSystem1(Thread):
 
 
     def add_queues_to_schedulers(self):
-        """Add queues to the schedulers of each core."""
         for core in self.cores:
             for queue, weight in zip(self.ready_queues, self.queue_weights):
                 core.add_queue(weight)
 
     def stop(self):
-        """Stop the subsystem and all its cores."""
         with self._lock:
             self.running = False
             self.clock_event.set()
 
     def start_cores(self):
-        """Start all cores."""
         for core in self.cores:
             core.start()
 
     def stop_cores(self):
-        """Stop all cores."""
         for core in self.cores:
             core.stop()
             core.join()
 
     def toggle_clock(self):
-        """Trigger the clock event for all cores."""
         self.clock_event.set()
 
     def check_finish_time(self):
-        """Check if all tasks are completed."""
         empty_flag = True
         for queue in self.ready_queues:
             empty_flag &= len(queue) == 0
         return len(self.waiting_queue) == 0 and empty_flag
 
     def run(self):
-        """Main execution loop for the subsystem."""
         self.start_cores()
         while self.running:
-            self.clock_event.wait()  # Wait for the clock event
+            self.clock_event.wait()
             print('Clock in SubSystem1 triggered')
 
-            # Toggle cores' clocks
+
             with self._lock:
                 for core in self.cores:
                     core.toggle_clock()
 
-            # Check if all tasks are finished
+
             if self.check_finish_time():
                 print('All tasks finished in SubSystem1')
                 break
 
-            # Clear the clock event for the next iteration
             self.clock_event.clear()
 
-        # Stop the cores and set the finish flag
         self.stop_cores()
         self.finish_flag = True
         print('SubSystem1 stopped')
